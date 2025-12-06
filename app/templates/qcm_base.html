@@ -1,0 +1,401 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+        position: relative;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(255, 193, 7, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(255, 235, 59, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.05) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .qcm-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 6rem 2rem 2rem 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .qcm-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .qcm-theme {
+        display: inline-block;
+        background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+        color: #1a1a1a;
+        padding: 0.5rem 2rem;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .qcm-title {
+        color: #FFC107;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 2rem;
+        line-height: 1.4;
+        text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);
+    }
+
+    .qcm-card {
+        background: rgba(45, 45, 45, 0.8);
+        border: 2px solid #FFC107;
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 30px rgba(255, 193, 7, 0.2);
+        backdrop-filter: blur(10px);
+    }
+
+    .options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .option {
+        background: rgba(26, 26, 26, 0.6);
+        border: 2px solid #FFB300;
+        border-radius: 15px;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .option:hover {
+        background: rgba(255, 193, 7, 0.1);
+        border-color: #FFC107;
+        transform: translateX(10px);
+        box-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
+    }
+
+    .option.selected {
+        background: rgba(255, 193, 7, 0.2);
+        border-color: #FFD54F;
+        border-width: 3px;
+    }
+
+    .option.correct {
+        background: rgba(76, 175, 80, 0.3);
+        border-color: #4CAF50;
+    }
+
+    .option.incorrect {
+        background: rgba(244, 67, 54, 0.3);
+        border-color: #F44336;
+    }
+
+    .option-letter {
+        background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+        color: #1a1a1a;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .option-text {
+        color: #FFD54F;
+        font-size: 1.1rem;
+        font-weight: 500;
+        flex: 1;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1.2rem;
+        background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+        color: #1a1a1a;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(135deg, #FFEB3B 0%, #FFC107 100%);
+        box-shadow: 0 6px 25px rgba(255, 193, 7, 0.5);
+        transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+        background: #666;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .explanation-box {
+        display: none;
+        margin-top: 2rem;
+        padding: 2rem;
+        background: rgba(26, 26, 26, 0.8);
+        border: 2px solid #FFC107;
+        border-radius: 15px;
+    }
+
+    .explanation-box.show {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .explanation-title {
+        color: #FFC107;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .explanation-text {
+        color: #FFD54F;
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        justify-content: center;
+    }
+
+    .nav-btn {
+        padding: 0.8rem 2rem;
+        background: rgba(255, 193, 7, 0.2);
+        color: #FFC107;
+        border: 2px solid #FFC107;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 193, 7, 0.3);
+        transform: scale(1.05);
+    }
+
+    .nav-btn.next {
+        background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%);
+        color: #1a1a1a;
+    }
+
+    .nav-btn.next:hover {
+        background: linear-gradient(135deg, #FFEB3B 0%, #FFC107 100%);
+        box-shadow: 0 4px 20px rgba(255, 193, 7, 0.5);
+    }
+
+    .nav-btn.hidden {
+        display: none;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .qcm-container {
+            padding: 5rem 1rem 1rem 1rem;
+        }
+
+        .qcm-card {
+            padding: 1.5rem;
+        }
+
+        .option {
+            padding: 1rem;
+        }
+    }
+</style>
+
+<div class="qcm-container">
+    <div class="qcm-header">
+        <div class="qcm-theme">{% block theme %}Thème{% endblock %}</div>
+        <h1 class="qcm-title">{% block question %}Question{% endblock %}</h1>
+        <div id="scoreDisplay" style="color: #FFC107; font-size: 1.2rem; font-weight: 600; margin-top: 1rem;">Score : 0 / 20</div>
+    </div>
+
+    <div class="qcm-card">
+        <div class="options-container" id="optionsContainer">
+            {% block options %}{% endblock %}
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="checkAnswer()">Valider ma réponse</button>
+
+        <div class="explanation-box" id="explanationBox">
+            <div class="explanation-title">💡 Explication</div>
+            <div class="explanation-text">{% block explanation %}{% endblock %}</div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="{{ url_for('honeycomb') }}" class="nav-btn">🐝 Retour à la ruche</a>
+            <a href="#" class="nav-btn next hidden" id="nextBtn">Suivant →</a>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedOption = null;
+const correctAnswer = '{% block correct_answer %}{% endblock %}';
+const currentQcm = parseInt('{% block current_qcm %}1{% endblock %}');
+const totalQcm = 20;
+
+// Initialiser le score depuis localStorage
+function getScore() {
+    return parseInt(localStorage.getItem('qcmScore') || '0');
+}
+
+function setScore(score) {
+    localStorage.setItem('qcmScore', score.toString());
+}
+
+function resetScore() {
+    localStorage.setItem('qcmScore', '0');
+}
+
+// Afficher le score actuel
+function displayScore() {
+    const score = getScore();
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    if (scoreDisplay) {
+        scoreDisplay.textContent = `Score : ${score} / 20`;
+    }
+}
+
+// Réinitialiser le score au début du QCM 1
+if (currentQcm === 1) {
+    resetScore();
+}
+
+function selectOption(element, answer) {
+    // Désélectionner les autres options
+    document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    
+    // Sélectionner l'option cliquée
+    element.classList.add('selected');
+    selectedOption = answer;
+    
+    // Activer le bouton de validation
+    document.getElementById('submitBtn').disabled = false;
+}
+
+function checkAnswer() {
+    if (!selectedOption) return;
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const explanationBox = document.getElementById('explanationBox');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Vérifier si la réponse est correcte
+    const isCorrect = selectedOption === correctAnswer;
+    
+    // Ajouter 1 point si correct
+    if (isCorrect) {
+        const currentScore = getScore();
+        setScore(currentScore + 1);
+    }
+    
+    // Marquer la réponse
+    document.querySelectorAll('.option').forEach(opt => {
+        const answer = opt.getAttribute('data-answer');
+        if (answer === correctAnswer) {
+            opt.classList.add('correct');
+        } else if (answer === selectedOption && answer !== correctAnswer) {
+            opt.classList.add('incorrect');
+        }
+        // Désactiver tous les clics
+        opt.style.pointerEvents = 'none';
+    });
+    
+    // Afficher l'explication
+    explanationBox.classList.add('show');
+    
+    // Désactiver le bouton
+    submitBtn.disabled = true;
+    submitBtn.textContent = isCorrect ? '✓ Bonne réponse !' : '✗ Réponse incorrecte';
+    
+    // Mettre à jour l'affichage du score
+    displayScore();
+    
+    // Afficher le bouton "Suivant" ou rediriger si 20/20
+    if (currentQcm < totalQcm) {
+        nextBtn.classList.remove('hidden');
+        const nextQcmNum = currentQcm + 1;
+        nextBtn.href = `/qcm${nextQcmNum}`;
+    } else {
+        // Dernier QCM : vérifier le score
+        const finalScore = getScore();
+        if (finalScore === 20) {
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = '🎉 20/20 ! Jouer au Snake →';
+            nextBtn.href = '/index#snake';
+            nextBtn.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = '/index';
+                setTimeout(() => {
+                    const gameContainer = document.querySelector('.game-container');
+                    if (gameContainer) {
+                        gameContainer.style.display = 'flex';
+                    }
+                }, 100);
+            };
+        } else {
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = `Retour à la ruche (${finalScore}/20)`;
+            nextBtn.href = '/honeycomb';
+        }
+    }
+}
+
+// Afficher le score au chargement de la page
+window.addEventListener('DOMContentLoaded', displayScore);
+</script>
+
+{% endblock %}

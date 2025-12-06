@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}2{% endblock %}
+
+{% block theme %}Thème 1 : Gestion du Parc Informatique et Durabilité{% endblock %}
+
+{% block question %}La fin du support de Windows 10 en octobre 2025 met en lumière un problème structurel. Lequel ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">L'obsolescence programmée par le logiciel</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">La fragilité physique des composants électroniques</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">La pénurie mondiale de claviers AZERTY</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">L'incompatibilité avec les écrans tactiles</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}A{% endblock %}
+
+{% block explanation %}
+Le matériel est physiquement intact, mais l'éditeur du logiciel (Microsoft) décide arbitrairement d'arrêter les mises à jour de sécurité ou d'imposer des prérequis matériels (comme la puce TPM 2.0) que les anciens PC n'ont pas. Cela force les établissements à jeter du matériel qui fonctionne encore, créant une dépendance coûteuse envers les décisions des Big Tech.
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}10{% endblock %}
+
+{% block theme %}Thème 3 : Logiciels Libres et Choix Techniques{% endblock %}
+
+{% block question %}Pourquoi la "Forge des communs numériques éducatifs" est-elle un outil stratégique ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Elle sert à archiver les bulletins scolaires</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Elle permet d'acheter des licences Microsoft en gros</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">C'est un forum pour réparer les imprimantes</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Elle permet de mutualiser les développements entre établissements</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}D{% endblock %}
+
+{% block explanation %}
+Plutôt que chaque établissement achète des solutions isolées, la Forge permet de co-construire des outils adaptés aux besoins réels du terrain. C'est un espace de collaboration où l'on partage des solutions libres, réduisant ainsi les coûts et la dépendance aux prestataires externes.
+{% endblock %}

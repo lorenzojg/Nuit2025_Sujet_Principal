@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}6{% endblock %}
+
+{% block theme %}Thème 2 : Souveraineté des Données et Cadre Juridique{% endblock %}
+
+{% block question %}Lorsqu'un service en ligne est proposé "gratuitement" à un établissement par un géant du numérique, quel est le coût réel ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">La captation des données personnelles des utilisateurs</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Une limitation du nombre d'élèves inscrits</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">L'obligation de regarder une publicité toutes les heures</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Il n'y en a pas, c'est un don désintéressé</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}A{% endblock %}
+
+{% block explanation %}
+Le modèle économique de ces "écosystèmes fermés" repose sur la collecte de données. Même si l'accès est gratuit, l'établissement paie en réalité avec les données de ses élèves, qui alimentent des profils publicitaires ou comportementaux. De plus, cela crée une accoutumance aux outils propriétaires, rendant une migration future très difficile et coûteuse (phénomène de "vendor lock-in").
+{% endblock %}

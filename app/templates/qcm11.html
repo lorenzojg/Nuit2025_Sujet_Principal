@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}11{% endblock %}
+
+{% block theme %}Thème 3 : Logiciels Libres et Choix Techniques{% endblock %}
+
+{% block question %}Face à un écosystème fermé (type Apple ou Google), quelle difficulté majeure rencontre un gestionnaire de parc ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">La difficulté à trouver des prises électriques compatibles</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Le manque de couleurs dans les menus</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">L'impossibilité de changer de fournisseur sans tout perdre</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">L'absence de correction orthographique</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}C{% endblock %}
+
+{% block explanation %}
+Les écosystèmes fermés sont conçus pour retenir l'utilisateur (captivité technologique). Les formats de fichiers propriétaires ou l'intégration exclusive des services rendent la migration vers une autre solution extrêmement complexe et coûteuse, enfermant l'établissement dans une relation de dépendance à long terme.
+{% endblock %}

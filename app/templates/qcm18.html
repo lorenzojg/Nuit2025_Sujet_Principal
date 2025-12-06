@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}18{% endblock %}
+
+{% block theme %}Thème 5 : Éthique et Responsabilité Institutionnelle{% endblock %}
+
+{% block question %}La "dépendance structurelle" mentionnée dans les rapports sur le numérique éducatif désigne...{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Le besoin d'électricité pour faire tourner les serveurs</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Le fait d'être piégé dans des abonnements et écosystèmes fermés</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">L'addiction des élèves aux réseaux sociaux</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">La nécessité d'avoir des bâtiments climatisés</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}B{% endblock %}
+
+{% block explanation %}
+En louant des services (SaaS) et des licences au lieu de posséder et maîtriser ses outils, l'institution perd sa souveraineté. Si l'éditeur change ses prix ou ses conditions d'utilisation, l'école est piégée. Retrouver cette maîtrise est un enjeu d'indépendance du service public.
+{% endblock %}

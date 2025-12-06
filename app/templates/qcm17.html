@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}17{% endblock %}
+
+{% block theme %}Thème 5 : Éthique et Responsabilité Institutionnelle{% endblock %}
+
+{% block question %}Pour assurer un numérique "Inclusif", un établissement doit veiller à...{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Fournir un iPad neuf à chaque élève</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Rendre les cours d'informatique payants</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Choisir des outils accessibles et sans discrimination financière</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Obliger les familles à avoir la fibre optique</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}C{% endblock %}
+
+{% block explanation %}
+L'inclusion signifie que le numérique ne doit pas être un facteur d'exclusion. Utiliser des formats ouverts et des logiciels libres (gratuits et installables partout, même sur de vieux PC à la maison) permet de réduire la fracture numérique, contrairement aux logiciels propriétaires coûteux qui creusent les inégalités.
+{% endblock %}

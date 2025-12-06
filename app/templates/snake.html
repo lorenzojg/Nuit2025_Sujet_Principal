@@ -1,0 +1,301 @@
+<style>
+    .game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.game-popup {
+    background: #000;
+    border: 3px solid rgb(238, 255, 0);
+    box-shadow: 0 0 50px rgb(238, 255, 0);
+    width: 600px;
+    height: 600px;
+    position: relative;
+}
+#game {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    border: 2px solid rgb(238, 255, 0);
+    image-rendering: pixelated;
+}
+.ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(238, 255, 0);
+    font-size: 1.2em;
+    font-weight: bold;
+    z-index: 10;
+}
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #f00;
+    padding: 2em;
+    border: 2px solid #f00;
+    text-align: center;
+    display: none;
+    font-size: 1.5em;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: 2px solid rgb(238, 255, 0);
+    color: rgb(238, 255, 0);
+    font-size: 1.2em;
+    padding: 0.3em 0.8em;
+    cursor: pointer;
+    font-family: inherit;
+}
+.close-btn:hover {
+    background: rgb(238, 255, 0);
+    color: #000;
+}
+</style>
+<div class="game-container" id="gameContainer">
+            <div class="game-popup">
+                <div class="ui">
+                    <div id="score">Score: 0</div>
+                    <div>← → ↑ ↓ | ENTER: Restart | ESC: Quitter</div>
+                </div>
+                <canvas id="game"></canvas>
+                <div id="game-over">
+                    <div>GAME OVER</div>
+                    <div id="finalScore">Score: 0</div>
+                    <div>ENTER pour rejouer | ESC pour quitter</div>
+                    <button class="close-btn" onclick="closeGame()">✕</button>
+                </div>
+                <button class="close-btn" onclick="closeGame()">✕</button>
+            </div>
+        </div>
+<script>
+    const konamiCode = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "KeyB",
+    "KeyA",
+];
+let konamiInput = [];
+
+document.addEventListener("keydown", e => {
+    if (document.getElementById("gameContainer").style.display === "flex") return;
+
+    konamiInput.push(e.code);
+    if (konamiInput.length > konamiCode.length) konamiInput.shift();
+
+    const displayCodes = konamiInput.map(k => {
+        if (k.includes("Arrow")) return k.slice(5);
+        return k.replace("Key", "").toUpperCase();
+    })
+
+    if (konamiInput.length === konamiCode.length && konamiInput.every((code, i) => code === konamiCode[i])) {
+        document.getElementById("gameContainer").style.display = "flex";
+        document.querySelector(".main").style.display = "none";
+        setTimeout(() => initSnakeGame(), 500);
+    }
+});
+
+// VARIABLES GLOBALES pour le jeu
+let canvas, context, gameOverDiv, scoreDisplay, finalScoreEl;
+let BLOCK_SIZE = 25;
+const GRID_SIZE = 20;
+const MAX_APPLES = 2;
+const BASE_SPEED = 12;
+const BASE_SNAKE_SIZE = 5;
+let count = 0;
+let grid_size = GRID_SIZE;
+let running = true;
+let speed = BASE_SPEED;
+let gameStarted = false;
+let canChangeDirection = true;
+let apples = [];
+let fruitsEaten = 0;
+let fruitsEatenTotal = 0;
+let snake = {};
+
+function initSnakeGame() {
+    canvas = document.getElementById("game");
+    context = canvas.getContext("2d");
+    gameOverDiv = document.getElementById("game-over");
+    scoreDisplay = document.getElementById("score");
+    finalScoreEl = document.getElementById("finalScore");
+
+    canvas.width = 600;
+    canvas.height = 600;
+
+    resetGame();
+    requestAnimationFrame(loop);
+}
+
+function resetGame() {
+    grid_size = GRID_SIZE;
+    snake = {
+        x: Math.floor(grid_size / 2) * BLOCK_SIZE,
+        y: Math.floor(grid_size / 2) * BLOCK_SIZE,
+        dx: BLOCK_SIZE,
+        dy: 0,
+        cells: [],
+        maxCells: BASE_SNAKE_SIZE,
+    };
+
+    for (let i = 0; i < BASE_SNAKE_SIZE; i++) {
+        snake.cells.push({ x: snake.x - i * snake.dx, y: snake.y });
+    }
+
+    apples = [];
+    fruitsEaten = 0;
+    fruitsEatenTotal = 0;
+    speed = BASE_SPEED;
+    running = true;
+    gameStarted = false;
+    canChangeDirection = true;
+    gameOverDiv.style.display = "none";
+
+    for (let i = 0; i < MAX_APPLES; i++) spawnApple();
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function spawnApple() {
+    let newApple;
+    do {
+        newApple = {
+            x: getRandomInt(0, grid_size) * BLOCK_SIZE,
+            y: getRandomInt(0, grid_size) * BLOCK_SIZE,
+        };
+    } while (snake.cells.some(cell => cell.x === newApple.x && cell.y === newApple.y));
+    apples.push(newApple);
+}
+
+function loop() {
+    if (!running) return;
+    requestAnimationFrame(loop);
+
+    if (++count < speed) return;
+    count = 0;
+    canChangeDirection = true;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    snake.x += snake.dx;
+    snake.y += snake.dy;
+
+    if (snake.x < 0) snake.x = 600 - BLOCK_SIZE;
+    else if (snake.x >= 600) snake.x = 0;
+    if (snake.y < 0) snake.y = 600 - BLOCK_SIZE;
+    else if (snake.y >= 600) snake.y = 0;
+
+    snake.cells.unshift({ x: snake.x, y: snake.y });
+    if (snake.cells.length > snake.maxCells) snake.cells.pop();
+
+    context.fillStyle = "#9c8d62ff";
+    apples.forEach(apple => context.fillRect(apple.x, apple.y, BLOCK_SIZE - 1, BLOCK_SIZE - 1));
+
+    snake.cells.forEach(cell => {
+        for (let i = apples.length - 1; i >= 0; i--) {
+            if (cell.x === apples[i].x && cell.y === apples[i].y) {
+                fruitsEaten++;
+                fruitsEatenTotal++;
+                apples.splice(i, 1);
+                spawnApple();
+                if (fruitsEaten >= 2) {
+                    snake.maxCells++;
+                    fruitsEaten = 0;
+                    if ((snake.maxCells - BASE_SNAKE_SIZE) % 10 === 0 && (grid_size + 2) * BLOCK_SIZE <= 580) {
+                        grid_size += 2;
+                    }
+                    if ((snake.maxCells - BASE_SNAKE_SIZE) % 5 === 0) {
+                        if (speed > 15) speed -= 2;
+                        else if (speed > 10) speed -= 1;
+                    }
+                }
+                break;
+            }
+        }
+    });
+
+    context.fillStyle = "#fffc44ff";
+    snake.cells.forEach((cell, index) => {
+        context.fillRect(cell.x, cell.y, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+        for (let i = index + 1; i < snake.cells.length; i++) {
+            if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+                running = false;
+                gameOverDiv.style.display = "block";
+                finalScoreEl.textContent = `Score: ${fruitsEatenTotal}`;
+            }
+        }
+    });
+
+    scoreDisplay.textContent = `Score: ${fruitsEatenTotal}`;
+}
+
+document.addEventListener("keydown", e => {
+    if (document.getElementById("gameContainer").style.display !== "flex") return;
+
+    if (e.code === "Escape") {
+        closeGame();
+        return;
+    }
+
+    if (!running && e.code === "Enter") {
+        resetGame();
+        requestAnimationFrame(loop);
+        return;
+    }
+
+    if (
+        running &&
+        !gameStarted &&
+        (e.code === "ArrowLeft" || e.code === "ArrowUp" || e.code === "ArrowRight" || e.code === "ArrowDown")
+    ) {
+        gameStarted = true;
+    }
+
+    if (running && canChangeDirection && gameStarted) {
+        if (e.code === "ArrowLeft" && snake.dx === 0) {
+            snake.dx = -BLOCK_SIZE;
+            snake.dy = 0;
+        } else if (e.code === "ArrowUp" && snake.dy === 0) {
+            snake.dy = -BLOCK_SIZE;
+            snake.dx = 0;
+        } else if (e.code === "ArrowRight" && snake.dx === 0) {
+            snake.dx = BLOCK_SIZE;
+            snake.dy = 0;
+        } else if (e.code === "ArrowDown" && snake.dy === 0) {
+            snake.dy = BLOCK_SIZE;
+            snake.dx = 0;
+        }
+        canChangeDirection = false;
+    }
+});
+
+function closeGame() {
+    document.getElementById("gameContainer").style.display = "none";
+    document.querySelector(".main").style.display = "block";
+    running = false;
+}
+</script>

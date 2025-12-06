@@ -1,0 +1,33 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}7{% endblock %}
+
+{% block theme %}Thème 2 : Souveraineté des Données et Cadre Juridique{% endblock %}
+
+{% block question %}Qu'apporte une solution numérique "souveraine" ou locale par rapport à une solution GAFAM ?{% endblock %}
+
+{% block options %}
+
+
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Une meilleure compatibilité avec les jeux vidéo</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Une interface utilisateur plus complexe</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">La gratuité totale sans frais de maintenance</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">La garantie que les données restent sous le contrôle de l'institution</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}D{% endblock %}
+
+{% block explanation %}
+Une solution souveraine (hébergée localement ou sur des serveurs académiques/nationaux de confiance) garantit que les données ne quittent pas le territoire et restent sous la maîtrise exclusive de l'institution publique. Cela renforce l'indépendance de l'école face aux stratégies commerciales des multinationales.
+{% endblock %}

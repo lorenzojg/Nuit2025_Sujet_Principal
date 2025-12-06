@@ -1,0 +1,33 @@
+{% extends 'qcm_base.html' %}
+
+{% block current_qcm %}1{% endblock %}
+
+{% block theme %}Thème 1 : Gestion du Parc Informatique et Durabilité{% endblock %}
+
+{% block question %}Lorsqu'un parc d'ordinateurs devient lent ou incompatible avec le dernier système Windows, quelle est l'option la plus écologique ?{% endblock %}
+
+{% block options %}
+
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Acheter des tablettes pour remplacer les PC</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Remplacer le matériel par des ordinateurs neufs</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Changer le système d'exploitation pour une solution légère (Linux)</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Augmenter le débit de la fibre optique</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}C{% endblock %}
+
+{% block explanation %}
+La fabrication de nouveaux terminaux représente 70 à 80 % de leur empreinte carbone totale. Remplacer des machines fonctionnelles uniquement pour des raisons logicielles (fin de support de Windows 10) constitue un gaspillage immense de ressources et de budget. Passer à un système Linux léger permet de prolonger la durée de vie du matériel existant de plusieurs années sans perte de performance pour les usages scolaires basiques.
+{% endblock %}

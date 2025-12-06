@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}4{% endblock %}
+
+{% block theme %}Thème 1 : Gestion du Parc Informatique et Durabilité{% endblock %}
+
+{% block question %}Que favorise la démarche NIRD concernant le matériel informatique ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">La location longue durée (leasing)</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Le reconditionnement et le réemploi</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">L'achat exclusif de marques américaines</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">L'utilisation des smartphones personnels des élèves</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}B{% endblock %}
+
+{% block explanation %}
+Pour être cohérent avec le pilier "Durable", l'établissement doit sortir de la logique de consommation linéaire. Le réemploi (donner une seconde vie au matériel interne) et le reconditionnement (acheter ou récupérer du matériel remis à neuf) sont les leviers principaux pour réduire l'impact environnemental du numérique éducatif.
+{% endblock %}

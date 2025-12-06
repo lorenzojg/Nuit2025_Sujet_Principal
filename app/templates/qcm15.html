@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}15{% endblock %}
+
+{% block theme %}Thème 4 : Stratégie d'Établissement et Culture Numérique{% endblock %}
+
+{% block question %}Quel est le rôle des éco-délégués dans la transition numérique d'un lycée ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Ils nettoient les écrans des salles informatique</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Ils réparent les câbles réseau coupés</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Ils surveillent les examens</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Ils sensibilisent à la sobriété numérique</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}D{% endblock %}
+
+{% block explanation %}
+La démarche NIRD intègre pleinement les élèves, notamment les éco-délégués. Ils peuvent porter des projets de diagnostic carbone, organiser des ateliers de réparation (Repair Café) ou sensibiliser leurs pairs à l'impact caché du streaming et des réseaux sociaux.
+{% endblock %}

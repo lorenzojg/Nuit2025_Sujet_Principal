@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}16{% endblock %}
+
+{% block theme %}Thème 4 : Stratégie d'Établissement et Culture Numérique{% endblock %}
+
+{% block question %}Qu'est-ce que l'obsolescence logicielle ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Quand une mise à jour rend un appareil inutilisable ou lent</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Quand un ordinateur prend feu spontanément</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Quand on perd son mot de passe</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Quand la garantie du fabricant expire</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}A{% endblock %}
+
+{% block explanation %}
+C'est une forme d'obsolescence programmée où le logiciel évolue pour exiger plus de puissance que le matériel ne peut en fournir, ou lorsque l'éditeur décide arbitrairement d'arrêter le support de sécurité pour forcer le rachat de matériel neuf. C'est le défi majeur actuel avec la fin de Windows 10.
+{% endblock %}

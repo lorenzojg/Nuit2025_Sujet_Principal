@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}14{% endblock %}
+
+{% block theme %}Thème 4 : Stratégie d'Établissement et Culture Numérique{% endblock %}
+
+{% block question %}Comment un établissement peut-il agir comme un "Village Résistant" face aux Big Tech ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">En refusant toute technologie numérique</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">En construisant des murs autour du lycée</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">En développant son autonomie technologique</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">En utilisant uniquement des machines à écrire</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}C{% endblock %}
+
+{% block explanation %}
+La résistance ne consiste pas à rejeter le numérique, mais à rejeter la soumission aux géants technologiques. En adoptant des outils libres, en formant aux enjeux éthiques et en maîtrisant ses infrastructures, l'établissement devient autonome, ingénieux et créatif, à l'image du village d'Astérix cité en exemple.
+{% endblock %}

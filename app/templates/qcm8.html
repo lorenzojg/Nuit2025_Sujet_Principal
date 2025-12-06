@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}8{% endblock %}
+
+{% block theme %}Thème 2 : Souveraineté des Données et Cadre Juridique{% endblock %}
+
+{% block question %}L'utilisation de "communs numériques" permet de s'assurer que les ressources produites...{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Appartiennent à une entreprise privée partenaire</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Soient cryptées et inaccessibles aux parents</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Restent un bien public accessible et modifiable par tous</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Soient automatiquement effacées en fin d'année</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}C{% endblock %}
+
+{% block explanation %}
+Les communs numériques sont des ressources gérées collectivement. Contrairement à des licences propriétaires coûteuses qui restreignent l'usage, les communs garantissent que le travail des équipes éducatives reste disponible pour la communauté, favorisant la mutualisation plutôt que la compétition ou la privatisation du savoir.
+{% endblock %}

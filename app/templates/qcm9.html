@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}9{% endblock %}
+
+{% block theme %}Thème 3 : Logiciels Libres et Choix Techniques{% endblock %}
+
+{% block question %}Quelle est la différence fondamentale entre un logiciel gratuit (freeware) et un logiciel libre (open source) ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Le logiciel gratuit est toujours sans publicité</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Le logiciel libre permet d'accéder au code, de l'étudier et de le modifier</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Le logiciel libre ne fonctionne que sur Linux</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Le logiciel gratuit offre un support téléphonique 24/7</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}B{% endblock %}
+
+{% block explanation %}
+La gratuité ne concerne que le prix (zéro euro). La "liberté" logicielle concerne les droits accordés à l'utilisateur : liberté d'exécuter le programme, d'étudier son fonctionnement (transparence), de le redistribuer et de l'améliorer. Pour un établissement public, cela garantit l'indépendance et la pérennité des outils, sans "boîte noire" opaque.
+{% endblock %}

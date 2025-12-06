@@ -1,0 +1,31 @@
+{% extends 'qcm_base.html' %}
+{% block current_qcm %}13{% endblock %}
+
+{% block theme %}Thème 4 : Stratégie d'Établissement et Culture Numérique{% endblock %}
+
+{% block question %}Que signifie le sigle NIRD, qui guide la transformation numérique des établissements ?{% endblock %}
+
+{% block options %}
+<div class="option" data-answer="A" onclick="selectOption(this, 'A')">
+    <div class="option-letter">A</div>
+    <div class="option-text">Nouveaux Internets Rapides et Dématérialisés</div>
+</div>
+<div class="option" data-answer="B" onclick="selectOption(this, 'B')">
+    <div class="option-letter">B</div>
+    <div class="option-text">Numérique Inclusif, Responsable et Durable</div>
+</div>
+<div class="option" data-answer="C" onclick="selectOption(this, 'C')">
+    <div class="option-letter">C</div>
+    <div class="option-text">Norme Informatique de Régulation des Données</div>
+</div>
+<div class="option" data-answer="D" onclick="selectOption(this, 'D')">
+    <div class="option-letter">D</div>
+    <div class="option-text">Numérique Intelligent, Rapide et Digital</div>
+</div>
+{% endblock %}
+
+{% block correct_answer %}B{% endblock %}
+
+{% block explanation %}
+Ce sigle résume les trois piliers de la démarche : Inclusif (ne laisser personne de côté), Responsable (éthique des données, sobriété) et Durable (écologie, anti-gaspillage). C'est la boussole pour prendre des décisions technologiques sensées.
+{% endblock %}
