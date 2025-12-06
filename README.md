@@ -7,7 +7,7 @@ Nous étions une équipe de 20 dont des première, deuxième et troisième anné
 En plus du projet principal, il fallait réaliser 5 défis au choix parmi plusieurs propositions.
 
 ## Organisation
-Après les votes pour la sélection des défis, nous nous sommes répartis en de plus petites équipes sur les différents défis:
+Après les votes pour la sélection des défis, nous nous sommes répartis en de plus petites équipes sur les différents défis:  
 - Le projet principal
 - Une IA dont la spécialité est de scanner une page web afin démêler le vrai du faux et de réatablir la vérité
 - Une visualisation audio avec un fond qui s'adapte avec les changements dans la musique
@@ -16,8 +16,8 @@ Après les votes pour la sélection des défis, nous nous sommes répartis en de
 - Une dernière IA qui ne répond volontairement jamais comme souhaité par l'utilisateur
 
 ### Projet principal
-Le choix a été fait de le réaliser en python avec le framework Flask car non seulement nous voulions faire une application web intégrant du backend, notamment pour intégrer les IA et Python est le seul langage qui a été étudié par l'entiereté de l'équipe (dont les première année et les étudiants en science des données).
-Ensuite nous avons relu le sujet et nous avons échangé afin de nous mettre d'accord sur ce à quoi le site devrait ressembler. Sans experience dans le disign nous avions pour être honnête pas mal de difficultés sur ce point et nous nous sommes égarés à plusieurs reprises.
+Le choix a été fait de le réaliser en python avec le framework Flask car non seulement nous voulions faire une application web intégrant du backend, notamment pour intégrer les IA et Python est le seul langage qui a été étudié par l'entiereté de l'équipe (dont les première année et les étudiants en science des données).  
+Ensuite nous avons relu le sujet et nous avons échangé afin de nous mettre d'accord sur ce à quoi le site devrait ressembler. Sans experience dans le disign nous avions pour être honnête pas mal de difficultés sur ce point et nous nous sommes égarés à plusieurs reprises.  
 Pour être transparent, nous avons également utilisé l'IA pour nous assister dans le visuel des pages.
 
 #### Outils utilisés:
@@ -28,13 +28,13 @@ Pour être transparent, nous avons également utilisé l'IA pour nous assister d
 #### Améliorations proposées pour la prochaine fois
 1. Meilleure relecture complète du sujet dès le début
 2. Discuter après de l'objectif du projet
-3. Amener ensuite au contenu qu'on voudrait ajouter au projet (Faire des notes du contenu et des informations supplémentaires)
-  - Après cette étape, nous pouvons demander la création / la rédaction du contenu à d'autres pendant qu'on continue la suite de l'organisation
-  - Nous pouvons aussi commencer l'installation des outils de développement et faire la base du projet
-4. Décider de la structure globale du projet backend et frontend (pour le frontend, avec l'emplacement approximatif des éléments (des formes géométriques pour représenter les éléments et zones)
-  - Faire un dessin ou un modèle assez simple sur Figma ou Framer
-5. Ajouter les détails dans le contenu, les fonctionnalités supplémentaires et les détails de design à l'organisation du projet (avec notes et modélisations)
-6. Se répartir les tâches correctement et commencer le développement (noter les tâches)
+3. Amener ensuite au contenu qu'on voudrait ajouter au projet (Faire des notes du contenu et des informations supplémentaires)  
+    - Après cette étape, nous pouvons demander la création / la rédaction du contenu à d'autres pendant qu'on continue la suite de l'organisation  
+    - Nous pouvons aussi commencer l'installation des outils de développement et faire la base du projet
+5. Décider de la structure globale du projet backend et frontend (pour le frontend, avec l'emplacement approximatif des éléments (des formes géométriques pour représenter les éléments et zones)  
+    - Faire un dessin ou un modèle assez simple sur Figma ou Framer
+6. Ajouter les détails dans le contenu, les fonctionnalités supplémentaires et les détails de design à l'organisation du projet (avec notes et modélisations)
+7. Se répartir les tâches correctement et commencer le développement (noter les tâches)
 - Garder une trace de l'étape à laquelle on est
 - Factoriser l'écriture des routes
 - Mieux utiliser les outils css comme tailwindcss ou bootstrap et/ou factoriser l'écriture du css
@@ -47,4 +47,4 @@ Pour être transparent, nous avons également utilisé l'IA pour nous assister d
 - Utiliser les branches git pour les défis supplémentaires qui doivent être intégrés au site
 
 ### Autres défis
-Moi (Nostres), n'ayant pas travaillé sur les autres défis, je n'ai rien à ajouter les concernant. Je laisse les autres membre, rédiger s'ils le souhaitent, la partie de leur défi.
+Moi (Nostres), n'ayant pas travaillé sur les autres défis, je n'ai rien à ajouter les concernant. Je laisse les autres membres rédiger s'ils le souhaitent, la partie de leur défi.
